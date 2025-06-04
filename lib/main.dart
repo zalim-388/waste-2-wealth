@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:waste_management/Splash_screen.dart';
+import 'package:waste_management/UI/Splash_screen.dart';
 import 'package:waste_management/UI/choose_language.dart';
 
 void main() {
@@ -19,9 +19,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-home: const SplashScreen(),
-        
-        
+          home: SplashScreen(),
         );
       },
     );
