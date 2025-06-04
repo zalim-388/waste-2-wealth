@@ -50,7 +50,7 @@ class _Splash2State extends State<Splash2> {
                   ),
                 ),
                 Spacer(),
-              ],
+              ],                                      
             ),
           ),
 
