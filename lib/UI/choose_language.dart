@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:waste_management/UI/splash_2.dart';
 import 'package:waste_management/Utils/Appcolors.dart';
 import 'package:waste_management/Utils/font_style.dart';
@@ -24,11 +25,8 @@ class _ChooseLanguageState extends State<ChooseLanguage> {
       "name": "ಕನ್ನಡ - Kannada ",
       "image": "assets/images/Isolation_Mode (2).png",
     },
-    {"name": "தமிழ் - Tamil ", "image": "assets/images/Frame.png"},
-    {
-      "name": "বাংলা - Bengali ",
-      "image": "assets/images/Isolation_Mode (3).png",
-    },
+    {"name": "தமிழ் - Tamil ", "image": "assets/images/Isolation_Mode (3).png"},
+    {"name": "বাংলা - Bengali ", "image": "assets/images/Frame.png"},
   ];
 
   @override
@@ -56,7 +54,7 @@ class _ChooseLanguageState extends State<ChooseLanguage> {
         child: Column(
           children: [
             SizedBox(height: 45.h),
-        
+
             Expanded(
               child: GridView.builder(
                 itemCount: language.length,
@@ -71,34 +69,44 @@ class _ChooseLanguageState extends State<ChooseLanguage> {
                   final isSelected = selectedindex == index;
                   return GestureDetector(
                     onTap: () {
-                      selectedindex = index;
+                      setState(() {
+                        selectedindex = index;
+                      });
                     },
+
                     child: Container(
                       height: 155.h,
                       width: 164,
-        
+
                       decoration: BoxDecoration(
                         color:
-                            isSelected
-                                ? Colors.green[100]
-                                : Color(0xFFF5F5F5),
+                            isSelected ? Colors.green[100] : Color(0xFFF5F5F5),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
+                          SizedBox(height: 14.h),
                           Text(
-                            lang[index] ?? "",
+                            lang["name"] ?? "",
                             style: fontStyle.body.copyWith(
                               fontSize: 16,
                               color: Colors.black,
                             ),
                           ),
-        
-                          Image.asset(
-                            lang[index] ?? "",
-                            fit: BoxFit.cover,
-                            height: 40,
+                          SizedBox(height: 25.h),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 70),
+                            child: Container(
+                              height: 104.h,
+                              width: 174.w,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage(lang["image"] ?? ""),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
                           ),
                         ],
                       ),
@@ -107,21 +115,27 @@ class _ChooseLanguageState extends State<ChooseLanguage> {
                 },
               ),
             ),
-        
+
             SizedBox(height: 82.h),
             GestureDetector(
-              onTap: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => ChooseLanguage()),
-                );
+              onTap: () async {
+                try {
+                  final prefs = await SharedPreferences.getInstance();
+                  await prefs.setBool("showLanguageModal", false);
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => Splash2()),
+                  );
+                } catch (e) {
+                  print("SharedPreferences error: $e");
+                }
               },
               child: Container(
                 height: 52.h,
                 width: 346.w,
                 decoration: BoxDecoration(
                   color: Appcolor.primaryColor,
-        
+
                   borderRadius: BorderRadius.circular(8),
                 ),
                 alignment: Alignment.center,

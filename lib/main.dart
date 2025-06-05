@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:waste_management/UI/Splash_screen.dart';
-import 'package:waste_management/UI/choose_language.dart';
+import 'package:waste_management/UI/Address.dart';
+import 'package:waste_management/UI/bottomnav.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +19,8 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: SplashScreen(),
+          // home: SplashScreen(),
+          home: Bottomnav(),
         );
       },
     );

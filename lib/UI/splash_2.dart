@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:waste_management/UI/Signup_page.dart';
 import 'package:waste_management/UI/choose_language.dart';
 import 'package:waste_management/Utils/Appcolors.dart';
@@ -14,6 +15,21 @@ class Splash2 extends StatefulWidget {
 
 class _Splash2State extends State<Splash2> {
   bool showLanguageModal = true;
+
+  void initState() {
+    super.initState();
+    languageprefs();
+  }
+
+  Future<void> languageprefs() async {
+    final prefs = await SharedPreferences.getInstance();
+    final showmodel = prefs.getBool('showLanguageModal') ?? true;
+
+    setState(() {
+      showLanguageModal = showmodel;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,7 +95,10 @@ class _Splash2State extends State<Splash2> {
                 SizedBox(height: 31.h),
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => SignupPage(),));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SignupPage()),
+                    );
                   },
                   child: Container(
                     height: 52.h,
@@ -141,9 +160,9 @@ class _Splash2State extends State<Splash2> {
                             color: Colors.deepPurpleAccent,
                           ),
                         ),
-                    
+
                         SizedBox(height: 56.h),
-                    
+
                         Row(
                           children: [
                             Expanded(
@@ -167,7 +186,9 @@ class _Splash2State extends State<Splash2> {
                                   alignment: Alignment.center,
                                   child: Text(
                                     "Skip",
-                                    style: fontStyle.body.copyWith(fontSize: 11),
+                                    style: fontStyle.body.copyWith(
+                                      fontSize: 11,
+                                    ),
                                   ),
                                 ),
                               ),
