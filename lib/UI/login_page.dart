@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:waste_management/UI/Createyouraccount.dart';
+import 'package:waste_management/UI/Forget_password.dart';
 import 'package:waste_management/UI/Signup_page.dart';
 import 'package:waste_management/Utils/Appcolors.dart';
 import 'package:waste_management/Utils/font_style.dart';
@@ -54,7 +55,12 @@ class _LoginPageState extends State<LoginPage> {
               Padding(
                 padding: const EdgeInsets.only(left: 230),
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ForgetPassword()),
+                    );
+                  },
                   child: Text(
                     "Forgot your password?",
                     style: fontStyle.body.copyWith(fontSize: 13),

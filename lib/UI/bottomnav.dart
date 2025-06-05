@@ -14,46 +14,40 @@ class _BottomnavState extends State<Bottomnav> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Stack(
-        children: [
-          Center(child: Text('Page $_selectedIndex')),
+      body: Center(child: Text('Page $_selectedIndex')),
 
-          // Custom Center FAB
-          Positioned(
-            bottom: 10,
-            left: MediaQuery.of(context).size.width / 2 - 27.5,
-            child: GestureDetector(
-              onTap: () {
-                // Your FAB tap logic
-              },
-              child: Container(
-                width: 55,
-                height: 55,
-                decoration: BoxDecoration(
-                  color: Color(0xFF2DAF2F),
-                  shape: BoxShape.circle,
-                ),
-                child: Center(
-                  child: Container(
-                    width: 30,
-                    height: 30,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(color: Colors.white, width: 3),
-                    ),
-                    child: Center(
-                      child: Icon(Icons.add, size: 20, color: Colors.white),
-                    ),
-                  ),
-                ),
+      floatingActionButton: GestureDetector(
+        onTap: () {
+          // Your FAB logic
+        },
+        child: Container(
+          width: 55,
+          height: 55,
+          decoration: const BoxDecoration(
+            color: Color(0xFF2DAF2F),
+            shape: BoxShape.circle,
+          ),
+          child: Center(
+            child: Container(
+              width: 30,
+              height: 30,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(color: Colors.white, width: 3),
+              ),
+              child: const Center(
+                child: Icon(Icons.add, size: 20, color: Colors.white),
               ),
             ),
           ),
-        ],
+        ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+
       bottomNavigationBar: BottomAppBar(
-        shape: CircularNotchedRectangle(),
+        shape: const CircularNotchedRectangle(),
         notchMargin: 8,
+        color: Colors.white,
         child: SizedBox(
           height: 65,
           child: Row(
@@ -61,7 +55,7 @@ class _BottomnavState extends State<Bottomnav> {
             children: [
               _navItem("assets/icons/li_home.png", "Home", 0),
               _navItem("assets/icons/Vector.png", "Recycle", 1),
-              SizedBox(width: 55),
+              const SizedBox(width: 55), // Space for FAB
               _navItem("assets/icons/Vector (1).png", "Posts", 2),
               _navItem("assets/icons/vector (Stroke) (1).png", "inbox", 3),
             ],
@@ -78,16 +72,17 @@ class _BottomnavState extends State<Bottomnav> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          const SizedBox(height: 8),
           Image.asset(
             image,
             height: 24,
-            color: isSelected ? Color(0xFF2DAF2F) : Colors.grey,
+            color: isSelected ? const Color(0xFF2DAF2F) : Colors.grey,
           ),
-          SizedBox(height: 4),
+          const SizedBox(height: 4),
           Text(
             label,
             style: TextStyle(
-              color: isSelected ? Color(0xFF2DAF2F) : Colors.grey,
+              color: isSelected ? const Color(0xFF2DAF2F) : Colors.grey,
               fontSize: 12,
               fontWeight: FontWeight.w500,
             ),
@@ -97,3 +92,32 @@ class _BottomnavState extends State<Bottomnav> {
     );
   }
 }
+
+
+
+
+// Stack(
+//                 children: [
+//                   _navItem("assets/icons/vector (Stroke) (1).png", "Inbox", 3),
+//                   // 🔔 Notification badge (like '2')
+//                   if (_selectedIndex != 3)
+//                     Positioned(
+//                       right: 8,
+//                       top: 4,
+//                       child: Container(
+//                         padding: const EdgeInsets.all(4),
+//                         decoration: const BoxDecoration(
+//                           color: Colors.green,
+//                           shape: BoxShape.circle,
+//                         ),
+//                         child: const Text(
+//                           '2',
+//                           style: TextStyle(
+//                             color: Colors.white,
+//                             fontSize: 10,
+//                           ),
+//                         ),
+//                       ),
+//                     ),
+//                 ],
+//               ),
