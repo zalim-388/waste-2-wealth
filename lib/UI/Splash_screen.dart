@@ -44,10 +44,7 @@ class _SplashScreenState extends State<SplashScreen> {
               SizedBox(width: 7.w),
               Text(
                 "Waste 2 wealth",
-                style: fontStyle.heading.copyWith(
-                  color: Colors.green,
-                  fontSize: 15,
-                ),
+                style: fontStyle.heading.copyWith(color: Colors.green),
               ),
               Spacer(),
             ],

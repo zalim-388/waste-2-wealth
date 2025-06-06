@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:waste_management/UI/Recycle_Page.dart';
+import 'package:waste_management/UI/home_page.dart';
 
 class Bottomnav extends StatefulWidget {
   const Bottomnav({super.key});
@@ -9,41 +11,27 @@ class Bottomnav extends StatefulWidget {
 
 class _BottomnavState extends State<Bottomnav> {
   int _selectedIndex = 0;
+  final List<Widget> _pages = [
+    HomePage(),
+    RecyclePage(),
+    SizedBox.shrink(),
+    Center(child: Text('Posts Page')),
+    Center(child: Text('Inbox Page')),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(child: Text('Page $_selectedIndex')),
+      body: _pages[_selectedIndex == 2 ? 0 : _selectedIndex],
 
-      floatingActionButton: GestureDetector(
-        onTap: () {
-          // Your FAB logic
-        },
-        child: Container(
-          width: 55,
-          height: 55,
-          decoration: const BoxDecoration(
-            color: Color(0xFF2DAF2F),
-            shape: BoxShape.circle,
-          ),
-          child: Center(
-            child: Container(
-              width: 30,
-              height: 30,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(color: Colors.white, width: 3),
-              ),
-              child: const Center(
-                child: Icon(Icons.add, size: 20, color: Colors.white),
-              ),
-            ),
-          ),
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-
+      // floatingActionButton: GestureDetector(
+      //   onTap: () {
+      //     // Your FAB logic
+      //   },
+      //   child:
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
         notchMargin: 8,
@@ -55,7 +43,7 @@ class _BottomnavState extends State<Bottomnav> {
             children: [
               _navItem("assets/icons/li_home.png", "Home", 0),
               _navItem("assets/icons/Vector.png", "Recycle", 1),
-              const SizedBox(width: 55), // Space for FAB
+              _Addbotton(Icons.add),
               _navItem("assets/icons/Vector (1).png", "Posts", 2),
               _navItem("assets/icons/vector (Stroke) (1).png", "inbox", 3),
             ],
@@ -93,6 +81,27 @@ class _BottomnavState extends State<Bottomnav> {
   }
 }
 
+Widget _Addbotton(IconData? icon) {
+  return Container(
+    width: 55,
+    height: 55,
+    decoration: const BoxDecoration(
+      color: Color(0xFF2DAF2F),
+      shape: BoxShape.circle,
+    ),
+    child: Center(
+      child: Container(
+        width: 30,
+        height: 30,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(color: Colors.white, width: 3),
+        ),
+        child: Center(child: Icon(icon, size: 20, color: Colors.white)),
+      ),
+    ),
+  );
+}
 
 
 
