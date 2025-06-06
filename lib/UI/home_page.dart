@@ -12,16 +12,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final List<Map<String, dynamic>> Categories = [
-    {"name": "Plastic", "image": "assets/icons/plastic (1).png", "Items": []},
-    {"name": "Food", "image": "assets/icons/food-waste.png", "Items": []},
-    {
-      "name": "Eee",
-      "image": "assets/icons/electronic-waste 1.png",
-      "Items": [],
-    },
-    {"name": "Metals", "image": "assets/icons/waste.png", "Items": []},
-    {"name": "Pepper", "image": "assets/icons/Group 12574.png", "Items": []},
-    {"name": "Rubber", "image": "assets/icons/rubber.png", "Items": []},
+    {"name": "Plastic", "image": "assets/icons/plastic (1).png"},
+    {"name": "Food", "image": "assets/icons/food-waste.png"},
+    {"name": "Eee", "image": "assets/icons/electronic-waste 1.png"},
+    {"name": "Metals", "image": "assets/icons/waste.png"},
+    {"name": "Pepper", "image": "assets/icons/Group 12574.png"},
+    {"name": "Rubber", "image": "assets/icons/rubber.png"},
   ];
 
   @override
@@ -29,56 +25,60 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
 
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        automaticallyImplyLeading: false,
-
-        title: Row(
-          children: [
-            Icon(Icons.location_on_outlined, color: Colors.black),
-            SizedBox(width: 6.w),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Kavumpuram",
-                  style: fontStyle.body.copyWith(
-                    fontSize: 12.sp,
-                    color: Colors.black,
-                  ),
-                ),
-                Text(
-                  "Melmuri, Malappuram",
-                  style: fontStyle.body.copyWith(fontSize: 10.sp),
-                ),
-              ],
-            ),
-          ],
-        ),
-
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.grid_view_sharp, color: Colors.black, size: 24),
-          ),
-          SizedBox(width: 5.w),
-          CircleAvatar(
-            backgroundColor: Color(0xFF4D4D4D),
-            child: IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.person, color: Colors.white),
-            ),
-          ),
-          SizedBox(width: 10.w),
-        ],
-      ),
-
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.72.w),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(height: 28.h),
+            AppBar(
+              backgroundColor: Colors.white,
+              elevation: 0,
+              automaticallyImplyLeading: false,
+              title: Row(
+                children: [
+                  Icon(Icons.location_on_outlined, color: Colors.black),
+                  SizedBox(width: 6.w),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Kavumpuram",
+                        style: fontStyle.body.copyWith(
+                          fontSize: 12.sp,
+                          color: Colors.black,
+                        ),
+                      ),
+                      Text(
+                        "Melmuri, Malappuram",
+                        style: fontStyle.body.copyWith(fontSize: 10.sp),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              actions: [
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.grid_view_sharp,
+                    color: Colors.black,
+                    size: 24,
+                  ),
+                ),
+                SizedBox(width: 5.w),
+                CircleAvatar(
+                  backgroundColor: const Color(0xFF4D4D4D),
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.person, color: Colors.white),
+                  ),
+                ),
+                SizedBox(width: 10.w),
+              ],
+            ),
             SizedBox(height: 25.h),
+
             Row(
               children: [
                 Expanded(
@@ -114,12 +114,12 @@ class _HomePageState extends State<HomePage> {
             SizedBox(height: 28.h),
 
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   "Categories",
                   style: fontStyle.body.copyWith(color: Colors.black),
                 ),
-                SizedBox(width: 170.w),
                 TextButton(
                   onPressed: () {},
                   child: Text(
@@ -130,47 +130,120 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 16.h),
-                SizedBox(
-                  height: 380.h,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: Categories.length,
-                    itemBuilder: (context, index) {
-                      final item = Categories[index];
-                      return Column(
-                        children: [
-                          GestureDetector(
-                            onTap: () {},
-                            child: Container(
-                              height: 48.h,
-                              width: 48.w,
-                              decoration: BoxDecoration(
-                                color: Appcolor.border,
-                                borderRadius: BorderRadius.circular(8),
-                              ),
+              ],
+            ),
+
+            SizedBox(height: 16.h),
+
+            SizedBox(
+              height: 100.h,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: Categories.length,
+                itemBuilder: (context, index) {
+                  final item = Categories[index];
+                  return Padding(
+                    padding: EdgeInsets.only(right: 12.w),
+                    child: Column(
+                      children: [
+                        GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            height: 48.h,
+                            width: 48.w,
+                            decoration: BoxDecoration(
+                              color: Appcolor.border,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
                               child: Image.asset(
                                 item["image"],
-                                fit: BoxFit.cover,
-                                height: 30,
+                                fit: BoxFit.contain,
                               ),
                             ),
                           ),
-                          Text(
-                            item["name"],
-                            style: fontStyle.body.copyWith(
-                              color: Colors.black,
-                              fontSize: 12,
-                            ),
+                        ),
+                        SizedBox(height: 6.h),
+                        Text(
+                          item["name"],
+                          style: fontStyle.body.copyWith(
+                            color: Colors.black,
+                            fontSize: 12.sp,
                           ),
-                        ],
-                      );
-                    },
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+            SizedBox(height: 30.h),
+            Text(
+              "Available in your location",
+              style: fontStyle.body.copyWith(color: Colors.black),
+            ),
+
+            SizedBox(height: 16.h),
+            Container(
+              height: 186.h,
+              width: 165.w,
+              decoration: BoxDecoration(
+                color: Appcolor.border,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(8),
+                    ),
+                    child: Image.asset(
+                      "assets/images/product_image.png",
+                      fit: BoxFit.cover,
+                      height: 65.h,
+                      width: double.infinity,
+                    ),
                   ),
-                ),
-                SizedBox(height: 30.h),
-                SizedBox(height: 16.h),
-              ],
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10.w),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 8.h),
+                        Text(
+                          "Newspaper",
+                          style: fontStyle.body.copyWith(
+                            fontSize: 14,
+                            color: Colors.black,
+                          ),
+                        ),
+                        SizedBox(height: 2.h),
+                        Text(
+                          "18.5 Kg",
+                          style: fontStyle.body.copyWith(fontSize: 10),
+                        ),
+                        SizedBox(height: 4.h),
+                        Text(
+                          "in 8 Km from You",
+                          style: fontStyle.bold.copyWith(
+                            color: Appcolor.primaryColor,
+                          ),
+                        ),
+                        SizedBox(height: 2.h),
+                        Text(
+                          "₹10 per Kg",
+                          style: fontStyle.body.copyWith(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
