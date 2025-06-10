@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:waste_management/UI/splash_2.dart';
+import 'package:waste_management/UI/onbording.dart';
+
 import 'package:waste_management/Utils/Appcolors.dart';
 import 'package:waste_management/Utils/font_style.dart';
 
@@ -15,18 +17,18 @@ class ChooseLanguage extends StatefulWidget {
 class _ChooseLanguageState extends State<ChooseLanguage> {
   int selectedindex = 0;
   final List<Map<String, String>> language = [
-    {"name": "English", "image": "assets/images/image 7.png"},
-    {"name": "हिंदी - Hindi ", "image": "assets/images/Isolation_Mode.png"},
+    {"name": "English", "image": ""},
+    {"name": "हिंदी - Hindi ", "image": ""},
     {
       "name": "తెలుగు - Telugu ",
-      "image": "assets/images/Isolation_Mode (1).png",
+      "image": "assets/images/Isolation_Mode (1).svg",
     },
     {
       "name": "ಕನ್ನಡ - Kannada ",
-      "image": "assets/images/Isolation_Mode (2).png",
+      "image": "assets/images/Isolation_Mode (2).svg",
     },
-    {"name": "தமிழ் - Tamil ", "image": "assets/images/Isolation_Mode (3).png"},
-    {"name": "বাংলা - Bengali ", "image": "assets/images/Frame.png"},
+    {"name": "தமிழ் - Tamil ", "image": "assets/images/Isolation_Mode (3).svg"},
+    {"name": "বাংলা - Bengali ", "image": "assets/images/Isolation_Mode.svg"},
   ];
 
   @override
@@ -39,7 +41,7 @@ class _ChooseLanguageState extends State<ChooseLanguage> {
           onPressed: () {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => Splash2()),
+              MaterialPageRoute(builder: (context) => Onbording()),
             );
           },
           icon: Icon(Icons.arrow_back),
@@ -96,15 +98,13 @@ class _ChooseLanguageState extends State<ChooseLanguage> {
                           ),
                           SizedBox(height: 25.h),
                           Padding(
-                            padding: const EdgeInsets.only(left: 70),
+                            padding: EdgeInsets.only(left: 70),
                             child: Container(
                               height: 104.h,
                               width: 174.w,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: AssetImage(lang["image"] ?? ""),
-                                  fit: BoxFit.cover,
-                                ),
+                              child: SvgPicture.asset(
+                                lang["image"] ?? "",
+                                fit: BoxFit.cover,
                               ),
                             ),
                           ),
@@ -124,7 +124,7 @@ class _ChooseLanguageState extends State<ChooseLanguage> {
                   await prefs.setBool("showLanguageModal", false);
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => Splash2()),
+                    MaterialPageRoute(builder: (context) => Onbording()),
                   );
                 } catch (e) {
                   print("SharedPreferences error: $e");

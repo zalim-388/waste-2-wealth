@@ -10,6 +10,6 @@ class RecyclePage extends StatefulWidget {
 class _RecyclePageState extends State<RecyclePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Colors.white);
+    return Scaffold(backgroundColor: Colors.black);
   }
 }

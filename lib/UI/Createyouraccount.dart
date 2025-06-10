@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:waste_management/UI/Address.dart';
 import 'package:waste_management/Utils/Appcolors.dart';
 import 'package:waste_management/Utils/font_style.dart';
@@ -25,7 +26,11 @@ class _CreateyouraccountState extends State<Createyouraccount> {
         ),
         title: Text(
           "I dispose Recyclable waste",
-          style: fontStyle.body.copyWith(fontSize: 16,fontWeight: FontWeight.w800,color: Colors.black),
+          style: fontStyle.body.copyWith(
+            fontSize: 16,
+            fontWeight: FontWeight.w800,
+            color: Colors.black,
+          ),
         ),
 
         backgroundColor: Colors.white,
@@ -38,7 +43,7 @@ class _CreateyouraccountState extends State<Createyouraccount> {
             SizedBox(height: 60.h),
             _container(
               title: "House Hold",
-              image: "assets/icons/image 9.png",
+              image: "assets/icons/image 9.svg",
 
               value: 0,
               groupvalue: selectedvalue,
@@ -51,7 +56,7 @@ class _CreateyouraccountState extends State<Createyouraccount> {
             SizedBox(height: 12.h),
             _container(
               title: "Commercial",
-              image: "assets/icons/image 10.png",
+              image: "assets/icons/image 10.svg",
               value: 1,
               groupvalue: selectedvalue,
               onChanged: (val) {
@@ -63,7 +68,7 @@ class _CreateyouraccountState extends State<Createyouraccount> {
             SizedBox(height: 12.h),
             _container(
               title: "Industrial",
-              image: "assets/icons/image 12.png",
+              image: "assets/icons/image 12.svg",
               value: 2,
               groupvalue: selectedvalue,
               onChanged: (val) {
@@ -125,7 +130,12 @@ Widget _container({
         CircleAvatar(
           radius: 20,
           backgroundColor: const Color(0xFFD9D9D9),
-          child: Image.asset(image, fit: BoxFit.contain),
+          child: SvgPicture.asset(
+            image,
+            width: 24.w,
+            height: 24.h,
+            fit: BoxFit.cover,
+          ),
         ),
         SizedBox(width: 10.w),
         Text(

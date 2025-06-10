@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:waste_management/UI/Createyouraccount.dart';
 import 'package:waste_management/UI/Forget_password.dart';
 import 'package:waste_management/UI/Signup_page.dart';
@@ -30,11 +31,10 @@ class _LoginPageState extends State<LoginPage> {
               Container(
                 height: 40.h,
                 width: 48.w,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/icons/Frame 1.png'),
-                    fit: BoxFit.cover,
-                  ),
+
+                child: SvgPicture.asset(
+                  "assets/icons/Frame 1.svg",
+                  fit: BoxFit.cover,
                 ),
               ),
 

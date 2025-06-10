@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:waste_management/UI/Signup_page.dart';
 import 'package:waste_management/Utils/Appcolors.dart';
 import 'package:waste_management/Utils/font_style.dart';
@@ -46,11 +47,9 @@ class _ForgetPasswordState extends State<ForgetPassword>
                 Container(
                   height: 40.h,
                   width: 48.w,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/icons/Frame 1.png'),
-                      fit: BoxFit.cover,
-                    ),
+                  child: SvgPicture.asset(
+                    "assets/icons/Frame 1.svg",
+                    fit: BoxFit.cover,
                   ),
                 ),
 
@@ -88,12 +87,12 @@ class _ForgetPasswordState extends State<ForgetPassword>
                       _tabBody(
                         context,
                         "Email",
-                        "assets/icons/vector_copy.png",
+                        "assets/icons/exclamation-circle.svg",
                       ),
                       _tabBody(
                         context,
                         "Phone",
-                        "assets/icons/vector_copy.png",
+                        "assets/icons/exclamation-circle.svg",
                       ),
                     ],
                   ),
@@ -123,14 +122,7 @@ Widget _tabBody(BuildContext context, String hint, String image) {
         alignment: Alignment.center,
         child: Row(
           children: [
-            Image.asset(
-              image,
-              height: 24,
-              width: 24,
-              errorBuilder: (context, error, stackTrace) {
-                return Text('Error loading icon');
-              },
-            ),
+            SvgPicture.asset(image, fit: BoxFit.cover),
             SizedBox(width: 8.w),
             Expanded(
               child: Text(

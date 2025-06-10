@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:waste_management/UI/splash_2.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:waste_management/UI/onbording.dart';
+
 import 'package:waste_management/Utils/font_style.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -19,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Duration(seconds: 4),
       () => Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => Splash2()),
+        MaterialPageRoute(builder: (context) => Onbording()),
       ),
     );
     return Scaffold(
@@ -34,11 +36,10 @@ class _SplashScreenState extends State<SplashScreen> {
               Container(
                 height: 59.h,
                 width: 59.w,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/icons/Frame 1.png'),
-                    fit: BoxFit.cover,
-                  ),
+
+                child: SvgPicture.asset(
+                  "assets/icons/Frame 1.svg",
+                  fit: BoxFit.cover,
                 ),
               ),
               SizedBox(width: 7.w),

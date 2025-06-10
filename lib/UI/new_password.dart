@@ -86,7 +86,7 @@ class _NewPasswordState extends State<NewPassword> {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 alignment: Alignment.center,
-                child: Text(  
+                child: Text(
                   "Update Password",
                   style: fontStyle.body.copyWith(
                     color: Colors.white,
