@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:waste_management/UI/Recycle_Page.dart';
+import 'package:waste_management/UI/home_page.dart';
+import 'package:waste_management/UI/inbox.dart';
+import 'package:waste_management/UI/post.dart';
 
 class Bottomnav extends StatefulWidget {
   const Bottomnav({super.key});
@@ -10,39 +15,20 @@ class Bottomnav extends StatefulWidget {
 class _BottomnavState extends State<Bottomnav> {
   int _selectedIndex = 0;
 
+  final List<Widget> _pages = [
+    HomePage(),
+    RecyclePage(),
+    SizedBox.shrink(),
+    Post(),
+    Inbox(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(child: Text('Page $_selectedIndex')),
 
-      floatingActionButton: GestureDetector(
-        onTap: () {
-          // Your FAB logic
-        },
-        child: Container(
-          width: 55,
-          height: 55,
-          decoration: const BoxDecoration(
-            color: Color(0xFF2DAF2F),
-            shape: BoxShape.circle,
-          ),
-          child: Center(
-            child: Container(
-              width: 30,
-              height: 30,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(color: Colors.white, width: 3),
-              ),
-              child: const Center(
-                child: Icon(Icons.add, size: 20, color: Colors.white),
-              ),
-            ),
-          ),
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      body: _pages[_selectedIndex == 2 ? 0 : _selectedIndex],
 
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
@@ -53,11 +39,11 @@ class _BottomnavState extends State<Bottomnav> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _navItem("assets/icons/li_home.png", "Home", 0),
-              _navItem("assets/icons/Vector.png", "Recycle", 1),
-              const SizedBox(width: 55), // Space for FAB
-              _navItem("assets/icons/Vector (1).png", "Posts", 2),
-              _navItem("assets/icons/vector (Stroke) (1).png", "inbox", 3),
+              _navItem("assets/icons/li_home.svg", "Home", 0),
+              _navItem("assets/icons/Vector (1).svg", "Recycle", 1),
+              _AddButton(Icons.add),
+              _navItem("assets/icons/Vector.svg", "Posts", 3),
+              _navItem("assets/icons/vector (Stroke).svg", "Inbox", 4),
             ],
           ),
         ),
@@ -68,12 +54,16 @@ class _BottomnavState extends State<Bottomnav> {
   Widget _navItem(String image, String label, int index) {
     bool isSelected = _selectedIndex == index;
     return InkWell(
-      onTap: () => setState(() => _selectedIndex = index),
+      onTap: () {
+        setState(() {
+          _selectedIndex = index;
+        });
+      },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const SizedBox(height: 8),
-          Image.asset(
+          SvgPicture.asset(
             image,
             height: 24,
             color: isSelected ? const Color(0xFF2DAF2F) : Colors.grey,
@@ -91,33 +81,26 @@ class _BottomnavState extends State<Bottomnav> {
       ),
     );
   }
+
+  Widget _AddButton(IconData? icon) {
+    return Container(
+      width: 55,
+      height: 55,
+      decoration: const BoxDecoration(
+        color: Color(0xFF2DAF2F),
+        shape: BoxShape.circle,
+      ),
+      child: Center(
+        child: Container(
+          width: 30,
+          height: 30,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(color: Colors.white, width: 3),
+          ),
+          child: Center(child: Icon(icon, size: 20, color: Colors.white)),
+        ),
+      ),
+    );
+  }
 }
-
-
-
-
-// Stack(
-//                 children: [
-//                   _navItem("assets/icons/vector (Stroke) (1).png", "Inbox", 3),
-//                   // 🔔 Notification badge (like '2')
-//                   if (_selectedIndex != 3)
-//                     Positioned(
-//                       right: 8,
-//                       top: 4,
-//                       child: Container(
-//                         padding: const EdgeInsets.all(4),
-//                         decoration: const BoxDecoration(
-//                           color: Colors.green,
-//                           shape: BoxShape.circle,
-//                         ),
-//                         child: const Text(
-//                           '2',
-//                           style: TextStyle(
-//                             color: Colors.white,
-//                             fontSize: 10,
-//                           ),
-//                         ),
-//                       ),
-//                     ),
-//                 ],
-//               ),

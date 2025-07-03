@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:waste_management/UI/login_page.dart';
 import 'package:waste_management/Utils/Appcolors.dart';
 import 'package:waste_management/Utils/font_style.dart';
@@ -27,11 +28,10 @@ class _SignupPageState extends State<SignupPage> {
               Container(
                 height: 40.h,
                 width: 48.w,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/icons/Frame 1.png'),
-                    fit: BoxFit.cover,
-                  ),
+
+                child: SvgPicture.asset(
+                  "assets/icons/Frame 1.svg",
+                  fit: BoxFit.cover,
                 ),
               ),
               SizedBox(height: 36.h),
@@ -94,7 +94,6 @@ class _SignupPageState extends State<SignupPage> {
                       TextSpan(
                         text: "Log In",
                         style: fontStyle.body.copyWith(
-                     
                           fontWeight: FontWeight.bold,
                           fontSize: 13,
                         ),

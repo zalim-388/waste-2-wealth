@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:waste_management/UI/Signup_page.dart';
 import 'package:waste_management/Utils/Appcolors.dart';
 import 'package:waste_management/Utils/font_style.dart';
@@ -12,8 +13,24 @@ class ForgetPassword extends StatefulWidget {
   State<ForgetPassword> createState() => _ForgetPasswordState();
 }
 
-class _ForgetPasswordState extends State<ForgetPassword> {
+class _ForgetPasswordState extends State<ForgetPassword>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
   @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+    _tabController.addListener(() {
+      print('Current Tab Index: ${_tabController.index}');
+    });
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
@@ -30,11 +47,9 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 Container(
                   height: 40.h,
                   width: 48.w,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/icons/Frame 1.png'),
-                      fit: BoxFit.cover,
-                    ),
+                  child: SvgPicture.asset(
+                    "assets/icons/Frame 1.svg",
+                    fit: BoxFit.cover,
                   ),
                 ),
 
@@ -49,6 +64,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 SizedBox(height: 93.h),
 
                 TabBar(
+                  controller: _tabController,
                   indicatorColor: Colors.transparent,
                   labelColor: const Color(0xFF2DAF2F),
                   unselectedLabelColor: Colors.black,
@@ -66,9 +82,18 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 SizedBox(
                   height: 500,
                   child: TabBarView(
+                    controller: _tabController,
                     children: [
-                      _tabBody(context, "Email"),
-                      _tabBody(context, "Phone"),
+                      _tabBody(
+                        context,
+                        "Email",
+                        "assets/icons/exclamation-circle.svg",
+                      ),
+                      _tabBody(
+                        context,
+                        "Phone",
+                        "assets/icons/exclamation-circle.svg",
+                      ),
                     ],
                   ),
                 ),
@@ -81,11 +106,11 @@ class _ForgetPasswordState extends State<ForgetPassword> {
   }
 }
 
-Widget _tabBody(BuildContext context, String hint) {
+Widget _tabBody(BuildContext context, String hint, String image) {
   return Column(
     children: [
       SizedBox(height: 41.h),
-      _TextField(hint: hint),
+      _TextField(hint: hint, keybordtype: TextInputType.emailAddress),
       SizedBox(height: 29.h),
       Container(
         height: 52.h,
@@ -97,11 +122,11 @@ Widget _tabBody(BuildContext context, String hint) {
         alignment: Alignment.center,
         child: Row(
           children: [
-            Image.asset("assets/icons/vector_copy.png", height: 24, width: 24),
-            SizedBox(width: 8),
+            SvgPicture.asset(image, fit: BoxFit.cover),
+            SizedBox(width: 8.w),
             Expanded(
               child: Text(
-                "We're having trouble locating your ${hint.toLowerCase()}. Please resend the one you used during registration.",
+                "We're having trouble locating your \n Please resend the one you used during registration.",
                 style: fontStyle.body.copyWith(fontSize: 12),
               ),
             ),
@@ -160,8 +185,7 @@ Widget _tabBody(BuildContext context, String hint) {
 
 Widget _TextField({
   required String hint,
-  IconData? icon,
-  bool password = false,
+
   TextInputType keybordtype = TextInputType.text,
 }) {
   return SizedBox(
@@ -169,13 +193,13 @@ Widget _TextField({
     width: 346.w,
     child: TextField(
       keyboardType: keybordtype,
-      obscureText: password,
+
       decoration: InputDecoration(
         hintText: hint,
         hintStyle: fontStyle.body.copyWith(fontSize: 12),
         fillColor: Colors.white,
         filled: true,
-        suffixIcon: icon != null ? Icon(icon, size: 18) : null,
+
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Color(0xFFBBBBBB)),
           borderRadius: BorderRadius.circular(8),
