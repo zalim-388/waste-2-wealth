@@ -28,28 +28,28 @@ class _HomePageState extends State<HomePage> {
       "weight": "18.5 Kg",
       "price": "₹10 per Kg",
       "distance": "8 Km from You",
-      "image": "",
+      "image": "assets/images/Product Image copy.svg",
     },
     {
       "name": "Magazines",
       "weight": "4 Kg",
       "price": "₹750 1 piece",
       "distance": "5 Km from You",
-      "image": "",
+      "image": "assets/images/image 14.svg",
     },
     {
       "name": "Cartoon",
       "weight": "22 Kg",
       "price": "₹15 per Kg",
       "distance": "12 Km from You",
-      "image": "",
+      "image": "assets/images/image.svg",
     },
     {
       "name": "Tyer",
       "weight": "29 Kg",
       "price": "₹10 per Kg",
       "distance": "3 Km from You",
-      "image": "",
+      "image": "assets/images/image (1).svg",
     },
   ];
 

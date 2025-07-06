@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:waste_management/UI/Personal_Information.dart';
 import 'package:waste_management/Utils/font_style.dart';
 
 class Profile extends StatefulWidget {
@@ -15,16 +16,11 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: BackButton(onPressed: () => Navigator.pop(context)),
-        title: Text("Profile", style: fontStyle.bold.copyWith(fontSize: 16)),
-      ),
+
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(height: 16.h),
+          SizedBox(height: 54.h),
           CircleAvatar(
             radius: 30,
 
@@ -37,12 +33,18 @@ class _ProfileState extends State<Profile> {
           ),
 
           SizedBox(height: 5.h),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SvgPicture.asset("assets/icons/Group.svg", fit: BoxFit.cover),
-              Text("200 Credits", style: fontStyle.body.copyWith(fontSize: 14)),
-            ],
+          Padding(
+            padding: const EdgeInsets.only(left: 150),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SvgPicture.asset("assets/icons/Group.svg", fit: BoxFit.cover),
+                Text(
+                  "200 Credits",
+                  style: fontStyle.body.copyWith(fontSize: 14),
+                ),
+              ],
+            ),
           ),
           Align(
             alignment: Alignment.centerLeft,
@@ -65,11 +67,21 @@ class _ProfileState extends State<Profile> {
             child: Column(
               children: [
                 _profileitems(
-                  icon: Icons.person_pin_circle,
+                  svg: "assets/icons/Vector (1) copy.svg",
                   title: "Personal Information",
-                  ontap: () {},
+                  ontap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PersonalInformation(),
+                      ),
+                    );
+                  },
                 ),
-                Divider(),
+                Padding(
+                  padding: const EdgeInsets.only(left: 67),
+                  child: Divider(),
+                ),
                 _profileitems(
                   icon: Icons.settings,
                   title: "Setting",
@@ -91,16 +103,44 @@ class _ProfileState extends State<Profile> {
             ),
           ),
           containers(
-            _profileitems(svg: "", title: "Referrals & Credits", ontap: () {}),
+            _profileitems(
+              svg: "assets/icons/Group 20.svg",
+              title: "Referrals & Credits",
+              ontap: () {},
+            ),
           ),
           SizedBox(height: 3.h),
-          containers(_profileitems(svg: "", title: "Support", ontap: () {})),
+          containers(
+            _profileitems(
+              svg: "assets/icons/Group 21.svg",
+              title: "Support",
+              ontap: () {},
+            ),
+          ),
           SizedBox(height: 3.h),
-          containers(_profileitems(svg: "", title: "Legal", ontap: () {})),
+          containers(
+            _profileitems(
+              svg: "assets/icons/Group 22.svg",
+              title: "Legal",
+              ontap: () {},
+            ),
+          ),
           SizedBox(height: 3.h),
-          containers(_profileitems(svg: "", title: "FAQ", ontap: () {})),
+          containers(
+            _profileitems(
+              svg: "assets/icons/image 4.svg",
+              title: "FAQ",
+              ontap: () {},
+            ),
+          ),
           SizedBox(height: 3.h),
-          containers(_profileitems(svg: "", title: "Logout", ontap: () {})),
+          containers(
+            _profileitems(
+              svg: "assets/icons/Group 23.svg",
+              title: "Logout",
+              ontap: () {},
+            ),
+          ),
           SizedBox(height: 3.h),
         ],
       ),
@@ -127,13 +167,20 @@ Widget _profileitems({
   String? svg,
 }) {
   return ListTile(
-    leading:
-        svg != null
-            ? Image.asset(svg, height: 14.h, width: 14.w, fit: BoxFit.cover)
-            : Icon(icon, color: Colors.black),
+    contentPadding: EdgeInsets.symmetric(horizontal: 16.w),
+    leading: SizedBox(
+      width: 24.w,
+      child:
+          svg != null
+              ? Image.asset(svg, height: 14.h, width: 14.w, fit: BoxFit.contain)
+              : Icon(icon, color: Colors.black, size: 20.sp),
+    ),
     title: Text(
       title,
-      style: fontStyle.bold.copyWith(fontWeight: FontWeight.w500, fontSize: 14),
+      style: fontStyle.bold.copyWith(
+        fontWeight: FontWeight.w500,
+        fontSize: 14.sp,
+      ),
     ),
     trailing: Icon(
       Icons.arrow_forward_ios,
