@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:waste_management/UI/Personal_Information.dart';
+import 'package:waste_management/UI/help.dart';
 import 'package:waste_management/Utils/font_style.dart';
 
 class Profile extends StatefulWidget {
@@ -46,17 +47,17 @@ class _ProfileState extends State<Profile> {
               ],
             ),
           ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
-              child: Text(
-                'PERSONALIZE',
-                style: fontStyle.body.copyWith(fontSize: 12.sp),
-              ),
-            ),
-          ),
-          SizedBox(height: 2.h),
+          // Align(
+          //   alignment: Alignment.centerLeft,
+          //   child: Padding(
+          //     padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
+          //     child: Text(
+          //       'PERSONALIZE',
+          //       style: fontStyle.body.copyWith(fontSize: 12.sp),
+          //     ),
+          //   ),
+          // ),
+          SizedBox(height: 17.h),
           Container(
             width: 346.w,
 
@@ -91,17 +92,8 @@ class _ProfileState extends State<Profile> {
             ),
           ),
 
-          SizedBox(height: 13.h),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
-              child: Text(
-                'PERSONALIZE',
-                style: fontStyle.body.copyWith(fontSize: 12.sp),
-              ),
-            ),
-          ),
+          SizedBox(height: 34.h),
+
           containers(
             _profileitems(
               svg: "assets/icons/Group 20.svg",
@@ -113,22 +105,28 @@ class _ProfileState extends State<Profile> {
           containers(
             _profileitems(
               svg: "assets/icons/Group 21.svg",
-              title: "Support",
-              ontap: () {},
+              title: "Help",
+              ontap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HelpScreen()),
+                );
+              },
             ),
           ),
           SizedBox(height: 3.h),
+
           containers(
             _profileitems(
               svg: "assets/icons/Group 22.svg",
-              title: "Legal",
+              title: "Privacy Policy",
               ontap: () {},
             ),
           ),
           SizedBox(height: 3.h),
           containers(
             _profileitems(
-              svg: "assets/icons/image 4.svg",
+              svg: "assets/icons/question-answer_17500673 1.svg",
               title: "FAQ",
               ontap: () {},
             ),
@@ -172,7 +170,12 @@ Widget _profileitems({
       width: 24.w,
       child:
           svg != null
-              ? Image.asset(svg, height: 14.h, width: 14.w, fit: BoxFit.contain)
+              ? SvgPicture.asset(
+                svg,
+                height: 22.h,
+                width: 22.w,
+                fit: BoxFit.contain,
+              )
               : Icon(icon, color: Colors.black, size: 20.sp),
     ),
     title: Text(

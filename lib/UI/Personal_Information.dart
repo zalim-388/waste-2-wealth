@@ -4,7 +4,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:waste_management/Utils/Appcolors.dart';
 import 'package:waste_management/Utils/font_style.dart';
 
-
 class PersonalInformation extends StatefulWidget {
   const PersonalInformation({super.key});
 
@@ -19,7 +18,10 @@ class _PersonalInformationState extends State<PersonalInformation> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: BackButton(onPressed: () => Navigator.pop(context)),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios, color: Colors.black),
+          onPressed: () => Navigator.pop(context),
+        ),
         title: Text(
           "Personal Information",
           style: fontStyle.bold.copyWith(fontSize: 16),

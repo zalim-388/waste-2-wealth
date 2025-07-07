@@ -9,6 +9,7 @@ class fontStyle {
     color: Colors.black,
   );
   static TextStyle bold = GoogleFonts.poppins(fontWeight: FontWeight.bold);
+   static TextStyle custom = GoogleFonts.poppins();
   static TextStyle body = GoogleFonts.poppins(
     fontSize: 18,
     color: Appcolor.textcolor,
