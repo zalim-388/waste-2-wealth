@@ -149,7 +149,7 @@ class _HelpCenterScreenState extends State<HelpCenterScreen> {
                     ),
                     SizedBox(height: 4.h),
                     Text(
-                      '  Wing B, 1st Floor, Tower-B The Presidency Tower Anamika\n  Enclave Sector-14, Mehrauli Gurgaon Road, Opp. Govt. Girls\n  College, Gurgaon, Gurugram, Haryana-122001',
+                      '  Wing B, 1st Floor, Tower-B The Presidency Tower Anamika\n  Enclave Sector-14,Mehrauli Gurgaon Road,Opp.Govt. Girls\n  College,Gurgaon,Gurugram,Haryana-122001',
                       style: fontStyle.body.copyWith(
                         fontSize: 10.sp,
                         color: Colors.grey[700],

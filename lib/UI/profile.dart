@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:waste_management/UI/Personal_Information.dart';
+import 'package:waste_management/UI/faQ.dart';
 import 'package:waste_management/UI/help.dart';
+import 'package:waste_management/UI/privacypolicy.dart';
 import 'package:waste_management/Utils/font_style.dart';
 
 class Profile extends StatefulWidget {
@@ -120,7 +122,12 @@ class _ProfileState extends State<Profile> {
             _profileitems(
               svg: "assets/icons/Group 22.svg",
               title: "Privacy Policy",
-              ontap: () {},
+              ontap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Privacypolicy()),
+                );
+              },
             ),
           ),
           SizedBox(height: 3.h),
@@ -128,7 +135,12 @@ class _ProfileState extends State<Profile> {
             _profileitems(
               svg: "assets/icons/question-answer_17500673 1.svg",
               title: "FAQ",
-              ontap: () {},
+              ontap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Faq()),
+                );
+              },
             ),
           ),
           SizedBox(height: 3.h),

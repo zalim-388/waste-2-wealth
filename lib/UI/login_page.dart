@@ -48,7 +48,10 @@ class _LoginPageState extends State<LoginPage> {
               ),
 
               SizedBox(height: 40.h),
-              _TextField(hint: "Mobile Number"),
+              _TextField(
+                hint: "phone number",
+                prefixIconPath: "assets/icons/763048_preview 1.svg",
+              ),
               SizedBox(height: 8.h),
               _TextField(hint: "password", icon: Icons.visibility),
               SizedBox(height: 13.h),
@@ -139,6 +142,7 @@ Widget _TextField({
   IconData? icon,
   bool password = false,
   TextInputType keybordtype = TextInputType.text,
+  String? prefixIconPath,
 }) {
   return SizedBox(
     height: 50.h,
@@ -152,6 +156,27 @@ Widget _TextField({
         fillColor: Colors.white,
         filled: true,
         suffixIcon: icon != null ? Icon(icon, size: 18) : null,
+        prefixIcon:
+            prefixIconPath != null
+                ? Padding(
+                  padding: const EdgeInsets.only(left: 12, right: 8),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SvgPicture.asset(
+                        prefixIconPath,
+                        height: 20.h,
+                        width: 30.w,
+                        fit: BoxFit.cover,
+                      ),
+                      Text(
+                        "+91 ",
+                        style: fontStyle.body.copyWith(fontSize: 12),
+                      ),
+                    ],
+                  ),
+                )
+                : null,
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Color(0xFFBBBBBB)),
           borderRadius: BorderRadius.circular(8),
