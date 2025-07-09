@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:waste_management/UI/Createyouraccount.dart';
+import 'package:waste_management/UI/Recycle_Page.dart';
 import 'package:waste_management/UI/Splash_screen.dart';
 import 'package:waste_management/UI/faQ.dart';
 import 'package:waste_management/UI/help.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: Createyouraccount(),
+          home: RecyclePage(),
           // home: NewPassword(),
         );
       },

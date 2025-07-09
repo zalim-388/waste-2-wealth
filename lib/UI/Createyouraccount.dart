@@ -110,7 +110,7 @@ Widget _container({
   required int value,
   required int groupValue,
   required Function(int?) onChanged,
-  required Color activeColor, // Made activeColor required
+  required Color activeColor,
 }) {
   return Container(
     height: 48.h,
@@ -142,7 +142,7 @@ Widget _container({
           value: value,
           groupValue: groupValue,
           onChanged: onChanged,
-          activeColor: activeColor, // Using the required activeColor
+          activeColor: activeColor,
         ),
         SizedBox(width: 10.w),
       ],
